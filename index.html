@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/UPVIIWonokromo_0.js"></script>
+        <script src="data/OutputPolygon_2.js"></script>
+        <script src="data/Dissolved_3.js"></script>
+        <script src="data/Clipped_4.js"></script>
+        <script src="data/jaringankesehatan_5.js"></script>
+        <script src="data/JaringanJalanUPVIIWonokromo_6.js"></script>
+        <script src="data/Servicearealines_7.js"></script>
+        <script src="data/univ_surabaya_8.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        function pop_UPVIIWonokromo_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_UPVIIWonokromo_0_0() {
+            return {
+                pane: 'pane_UPVIIWonokromo_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(133,182,111,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_UPVIIWonokromo_0');
+        map.getPane('pane_UPVIIWonokromo_0').style.zIndex = 400;
+        map.getPane('pane_UPVIIWonokromo_0').style['mix-blend-mode'] = 'normal';
+        var layer_UPVIIWonokromo_0 = new L.geoJson(json_UPVIIWonokromo_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_UPVIIWonokromo_0',
+            layerName: 'layer_UPVIIWonokromo_0',
+            pane: 'pane_UPVIIWonokromo_0',
+            onEachFeature: pop_UPVIIWonokromo_0,
+            style: style_UPVIIWonokromo_0_0,
+        });
+        bounds_group.addLayer(layer_UPVIIWonokromo_0);
+        map.addLayer(layer_UPVIIWonokromo_0);
+        map.createPane('pane_OutputInterpolation_1');
+        map.getPane('pane_OutputInterpolation_1').style.zIndex = 401;
+        var img_OutputInterpolation_1 = 'data/OutputInterpolation_1.png';
+        var img_bounds_OutputInterpolation_1 = [[-7.311393141948258,112.70836376447322],[-7.2555444155789495,112.75689480545485]];
+        var layer_OutputInterpolation_1 = new L.imageOverlay(img_OutputInterpolation_1,
+                                              img_bounds_OutputInterpolation_1,
+                                              {pane: 'pane_OutputInterpolation_1'});
+        bounds_group.addLayer(layer_OutputInterpolation_1);
+        map.addLayer(layer_OutputInterpolation_1);
+        function pop_OutputPolygon_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_OutputPolygon_2_0(feature) {
+            switch(String(feature.properties['cost_level'])) {
+                case '500.0':
+                    return {
+                pane: 'pane_OutputPolygon_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,251,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '1000.0':
+                    return {
+                pane: 'pane_OutputPolygon_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(228,239,249,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '1500.0':
+                    return {
+                pane: 'pane_OutputPolygon_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(209,226,243,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '2000.0':
+                    return {
+                pane: 'pane_OutputPolygon_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(186,214,235,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '2500.0':
+                    return {
+                pane: 'pane_OutputPolygon_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(154,200,224,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '3000.0':
+                    return {
+                pane: 'pane_OutputPolygon_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(115,178,216,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '3500.0':
+                    return {
+                pane: 'pane_OutputPolygon_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(82,157,204,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '4000.0':
+                    return {
+                pane: 'pane_OutputPolygon_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(53,133,191,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '4500.0':
+                    return {
+                pane: 'pane_OutputPolygon_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(29,108,177,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '5000.0':
+                    return {
+                pane: 'pane_OutputPolygon_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(8,81,156,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_OutputPolygon_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(8,48,107,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_OutputPolygon_2');
+        map.getPane('pane_OutputPolygon_2').style.zIndex = 402;
+        map.getPane('pane_OutputPolygon_2').style['mix-blend-mode'] = 'normal';
+        var layer_OutputPolygon_2 = new L.geoJson(json_OutputPolygon_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_OutputPolygon_2',
+            layerName: 'layer_OutputPolygon_2',
+            pane: 'pane_OutputPolygon_2',
+            onEachFeature: pop_OutputPolygon_2,
+            style: style_OutputPolygon_2_0,
+        });
+        bounds_group.addLayer(layer_OutputPolygon_2);
+        map.addLayer(layer_OutputPolygon_2);
+        function pop_Dissolved_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Dissolved_3_0() {
+            return {
+                pane: 'pane_Dissolved_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(133,182,111,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Dissolved_3');
+        map.getPane('pane_Dissolved_3').style.zIndex = 403;
+        map.getPane('pane_Dissolved_3').style['mix-blend-mode'] = 'normal';
+        var layer_Dissolved_3 = new L.geoJson(json_Dissolved_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Dissolved_3',
+            layerName: 'layer_Dissolved_3',
+            pane: 'pane_Dissolved_3',
+            onEachFeature: pop_Dissolved_3,
+            style: style_Dissolved_3_0,
+        });
+        bounds_group.addLayer(layer_Dissolved_3);
+        map.addLayer(layer_Dissolved_3);
+        function pop_Clipped_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Clipped_4_0(feature) {
+            switch(String(feature.properties['cost2'])) {
+                case '500':
+                    return {
+                pane: 'pane_Clipped_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(11,4,5,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '1000':
+                    return {
+                pane: 'pane_Clipped_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(38,23,42,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '1500':
+                    return {
+                pane: 'pane_Clipped_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(56,42,84,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '2000':
+                    return {
+                pane: 'pane_Clipped_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(65,64,130,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '2500':
+                    return {
+                pane: 'pane_Clipped_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(57,93,156,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '3000':
+                    return {
+                pane: 'pane_Clipped_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(53,123,163,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '3500':
+                    return {
+                pane: 'pane_Clipped_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(52,152,169,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '4000':
+                    return {
+                pane: 'pane_Clipped_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(62,180,173,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '4500':
+                    return {
+                pane: 'pane_Clipped_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(98,207,172,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '5000':
+                    return {
+                pane: 'pane_Clipped_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(170,225,189,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Clipped_4');
+        map.getPane('pane_Clipped_4').style.zIndex = 404;
+        map.getPane('pane_Clipped_4').style['mix-blend-mode'] = 'normal';
+        var layer_Clipped_4 = new L.geoJson(json_Clipped_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Clipped_4',
+            layerName: 'layer_Clipped_4',
+            pane: 'pane_Clipped_4',
+            onEachFeature: pop_Clipped_4,
+            style: style_Clipped_4_0,
+        });
+        bounds_group.addLayer(layer_Clipped_4);
+        map.addLayer(layer_Clipped_4);
+        function pop_jaringankesehatan_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_jaringankesehatan_5_0() {
+            return {
+                pane: 'pane_jaringankesehatan_5',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(145,82,45,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_jaringankesehatan_5');
+        map.getPane('pane_jaringankesehatan_5').style.zIndex = 405;
+        map.getPane('pane_jaringankesehatan_5').style['mix-blend-mode'] = 'normal';
+        var layer_jaringankesehatan_5 = new L.geoJson(json_jaringankesehatan_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_jaringankesehatan_5',
+            layerName: 'layer_jaringankesehatan_5',
+            pane: 'pane_jaringankesehatan_5',
+            onEachFeature: pop_jaringankesehatan_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_jaringankesehatan_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_jaringankesehatan_5);
+        map.addLayer(layer_jaringankesehatan_5);
+        function pop_JaringanJalanUPVIIWonokromo_6(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_JaringanJalanUPVIIWonokromo_6_0() {
+            return {
+                pane: 'pane_JaringanJalanUPVIIWonokromo_6',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_JaringanJalanUPVIIWonokromo_6');
+        map.getPane('pane_JaringanJalanUPVIIWonokromo_6').style.zIndex = 406;
+        map.getPane('pane_JaringanJalanUPVIIWonokromo_6').style['mix-blend-mode'] = 'normal';
+        var layer_JaringanJalanUPVIIWonokromo_6 = new L.geoJson(json_JaringanJalanUPVIIWonokromo_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_JaringanJalanUPVIIWonokromo_6',
+            layerName: 'layer_JaringanJalanUPVIIWonokromo_6',
+            pane: 'pane_JaringanJalanUPVIIWonokromo_6',
+            onEachFeature: pop_JaringanJalanUPVIIWonokromo_6,
+            style: style_JaringanJalanUPVIIWonokromo_6_0,
+        });
+        bounds_group.addLayer(layer_JaringanJalanUPVIIWonokromo_6);
+        map.addLayer(layer_JaringanJalanUPVIIWonokromo_6);
+        function pop_Servicearealines_7(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Servicearealines_7_0() {
+            return {
+                pane: 'pane_Servicearealines_7',
+                opacity: 1,
+                color: 'rgba(126,208,175,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Servicearealines_7');
+        map.getPane('pane_Servicearealines_7').style.zIndex = 407;
+        map.getPane('pane_Servicearealines_7').style['mix-blend-mode'] = 'normal';
+        var layer_Servicearealines_7 = new L.geoJson(json_Servicearealines_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Servicearealines_7',
+            layerName: 'layer_Servicearealines_7',
+            pane: 'pane_Servicearealines_7',
+            onEachFeature: pop_Servicearealines_7,
+            style: style_Servicearealines_7_0,
+        });
+        bounds_group.addLayer(layer_Servicearealines_7);
+        map.addLayer(layer_Servicearealines_7);
+        function pop_univ_surabaya_8(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nama</th>\
+                        <td>' + (feature.properties['Nama'] !== null ? autolinker.link(feature.properties['Nama'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kampus</th>\
+                        <td>' + (feature.properties['Kampus'] !== null ? autolinker.link(feature.properties['Kampus'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Gambar</th>\
+                        <td>' + (feature.properties['Gambar'] !== null ? '<img src="images/' + String(feature.properties['Gambar']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Rangking</th>\
+                        <td>' + (feature.properties['Deskripsi Univ_QS WUR'] !== null ? autolinker.link(feature.properties['Deskripsi Univ_QS WUR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Deskripsi Univ_Didirikan</th>\
+                        <td>' + (feature.properties['Deskripsi Univ_Didirikan'] !== null ? autolinker.link(feature.properties['Deskripsi Univ_Didirikan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Deskripsi Univ_Fakultas</th>\
+                        <td>' + (feature.properties['Deskripsi Univ_Fakultas'] !== null ? autolinker.link(feature.properties['Deskripsi Univ_Fakultas'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_univ_surabaya_8_0() {
+            return {
+                pane: 'pane_univ_surabaya_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(152,125,183,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_univ_surabaya_8');
+        map.getPane('pane_univ_surabaya_8').style.zIndex = 408;
+        map.getPane('pane_univ_surabaya_8').style['mix-blend-mode'] = 'normal';
+        var layer_univ_surabaya_8 = new L.geoJson(json_univ_surabaya_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_univ_surabaya_8',
+            layerName: 'layer_univ_surabaya_8',
+            pane: 'pane_univ_surabaya_8',
+            onEachFeature: pop_univ_surabaya_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_univ_surabaya_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_univ_surabaya_8);
+        map.addLayer(layer_univ_surabaya_8);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/univ_surabaya_8.png" /> univ_surabaya': layer_univ_surabaya_8,'<img src="legend/Servicearealines_7.png" /> Service area (lines)': layer_Servicearealines_7,'<img src="legend/JaringanJalanUPVIIWonokromo_6.png" /> Jaringan Jalan UP VII Wonokromo': layer_JaringanJalanUPVIIWonokromo_6,'<img src="legend/jaringankesehatan_5.png" /> jaringan kesehatan': layer_jaringankesehatan_5,'Clipped<br /><table><tr><td style="text-align: center;"><img src="legend/Clipped_4_5000.png" /></td><td>500</td></tr><tr><td style="text-align: center;"><img src="legend/Clipped_4_10001.png" /></td><td>1000</td></tr><tr><td style="text-align: center;"><img src="legend/Clipped_4_15002.png" /></td><td>1500</td></tr><tr><td style="text-align: center;"><img src="legend/Clipped_4_20003.png" /></td><td>2000</td></tr><tr><td style="text-align: center;"><img src="legend/Clipped_4_25004.png" /></td><td>2500</td></tr><tr><td style="text-align: center;"><img src="legend/Clipped_4_30005.png" /></td><td>3000</td></tr><tr><td style="text-align: center;"><img src="legend/Clipped_4_35006.png" /></td><td>3500</td></tr><tr><td style="text-align: center;"><img src="legend/Clipped_4_40007.png" /></td><td>4000</td></tr><tr><td style="text-align: center;"><img src="legend/Clipped_4_45008.png" /></td><td>4500</td></tr><tr><td style="text-align: center;"><img src="legend/Clipped_4_50009.png" /></td><td>5000</td></tr></table>': layer_Clipped_4,'<img src="legend/Dissolved_3.png" /> Dissolved': layer_Dissolved_3,'Output Polygon<br /><table><tr><td style="text-align: center;"><img src="legend/OutputPolygon_2_50000000000.png" /></td><td>500.0000000</td></tr><tr><td style="text-align: center;"><img src="legend/OutputPolygon_2_100000000001.png" /></td><td>1000.0000000</td></tr><tr><td style="text-align: center;"><img src="legend/OutputPolygon_2_150000000002.png" /></td><td>1500.0000000</td></tr><tr><td style="text-align: center;"><img src="legend/OutputPolygon_2_200000000003.png" /></td><td>2000.0000000</td></tr><tr><td style="text-align: center;"><img src="legend/OutputPolygon_2_250000000004.png" /></td><td>2500.0000000</td></tr><tr><td style="text-align: center;"><img src="legend/OutputPolygon_2_300000000005.png" /></td><td>3000.0000000</td></tr><tr><td style="text-align: center;"><img src="legend/OutputPolygon_2_350000000006.png" /></td><td>3500.0000000</td></tr><tr><td style="text-align: center;"><img src="legend/OutputPolygon_2_400000000007.png" /></td><td>4000.0000000</td></tr><tr><td style="text-align: center;"><img src="legend/OutputPolygon_2_450000000008.png" /></td><td>4500.0000000</td></tr><tr><td style="text-align: center;"><img src="legend/OutputPolygon_2_500000000009.png" /></td><td>5000.0000000</td></tr><tr><td style="text-align: center;"><img src="legend/OutputPolygon_2_10.png" /></td><td></td></tr></table>': layer_OutputPolygon_2,"Output Interpolation": layer_OutputInterpolation_1,'<img src="legend/UPVIIWonokromo_0.png" /> UP VII Wonokromo': layer_UPVIIWonokromo_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
